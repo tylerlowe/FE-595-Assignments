@@ -36,3 +36,9 @@ plot.axhline(y=0, color='k')
 plot.legend()
 # show the graph
 plot.show()
+
+
+# Save to a file
+figure = plot.figure()
+figure.savefig('colab_sine_cosine_tangent.png')
+
