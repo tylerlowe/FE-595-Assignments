@@ -14,11 +14,15 @@ time        = np.linspace(0, 2*np.pi)
 # Amplitude of the sine wave is sine of a variable like time
 sin_amplitude   = np.sin(time)
 cos_amplitude   = np.cos(time)
+tan_amplitude   = np.tan(time)
+
 # Plot a sine wave using time and amplitude obtained for the sine wave
 plot.plot(time, sin_amplitude,color="red",label="sine")
 plot.plot(time, cos_amplitude,color="blue",label="cosine")
+plot.plot(time, tan_amplitude,color="green",label="tangent")
+
 # Give a title for the sine wave plot
-plot.title('Sine and Cosine wave')
+plot.title('Sine, Cosine & Tangent wave')
 # Give x axis label for the sine wave plot
 plot.xlabel('Time')
 # Give y axis label for the sine wave plot
@@ -32,3 +36,9 @@ plot.axhline(y=0, color='k')
 plot.legend()
 # show the graph
 plot.show()
+
+
+# Save to a file
+figure = plot.figure()
+figure.savefig('colab_sine_cosine_tangent.png')
+
