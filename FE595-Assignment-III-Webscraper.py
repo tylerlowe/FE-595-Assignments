@@ -4,26 +4,30 @@
 import requests
 from lxml import etree
 
+
 # Save the male and fermale characters in seperate text ﬁles
 # function to extract characters
 def exractcharacter():
-    #opening male and female files with seperate handlers.
-    with open("malecharacter.txt","w") as maleFile, open('femalecharacter.txt', 'w') as femaleFile:   
-        for i in range(0,50):
-                response = requests.get("https://theyfightcrime.org/") 
-                rootelement= etree.HTML(response.content)
-                words = rootelement.xpath("//p//text()")
-                if(len(words)> 1):
-                    characters = words[1]    
-                gender = characters.split('She')                  
-                if(len(gender)>1):
-                    male =gender[0]
-                    maleFile.writelines(male+'\n')
-                    female = 'she'+gender[1] 
-                    femaleFile.writelines(female+'\n')
-                elif len(gender) == 0:
-                    male =gender[0] 
-                    maleFile.writelines(male+'\n')
+    try:
+        #opening male and female files with seperate handlers.
+        with open("malecharacter.txt","w") as maleFile, open('femalecharacter.txt', 'w') as femaleFile:   
+            for i in range(0,50):
+                    response = requests.get("https://theyfightcrime.org/") 
+                    rootelement= etree.HTML(response.content)
+                    words = rootelement.xpath("//p//text()")
+                    if(len(words)> 1):
+                        characters = words[1]    
+                    gender = characters.split('She')                  
+                    if(len(gender)>1):
+                        male =gender[0]
+                        maleFile.writelines(male+'\n')
+                        female = 'she'+gender[1] 
+                        femaleFile.writelines(female+'\n')
+                    elif len(gender) == 0:
+                        male =gender[0] 
+                        maleFile.writelines(male+'\n')
+    except IOError as e:
+        print ('Operation failed: %s' % e.strerror)
   
 #function call                  
 exractcharacter();
